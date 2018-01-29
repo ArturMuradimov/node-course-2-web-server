@@ -9,7 +9,7 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
 
-var maintenance = true;
+var maintenance = false;
 
 app.use((req, res, next) => {
   var now = new Date().toString();
@@ -27,6 +27,8 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
   if (maintenance) {
     res.render('maintenance.hbs');
+  } else {
+    next();
   }
 });
 
